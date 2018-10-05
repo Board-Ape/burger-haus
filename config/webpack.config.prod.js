@@ -337,6 +337,7 @@ module.exports = {
             exclude: cssModuleRegex,
             loader: getStyleLoaders({
               importLoaders: 1,
+              minimize: true,
               sourceMap: shouldUseSourceMap,
               modules: true,
               localIdentName: '[name]__[local]__[hash:base64:5]'
