@@ -22,25 +22,55 @@ class CoffeeBuilder extends Component {
     }
 
     addIngredientHandler = (type) => {
+        // Add ingredients
         const oldCount = this.state.ingredients[type];
         const updatedCount = oldCount + 1;
         const updatedIngredients = {
             ...this.state.ingredients
         };
         updatedIngredients[type] = updatedCount;
+        // Update the prices
         const priceAddition = INGREDIENT_PRICES[type]
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice + priceAddition;
-        this.setState({total: newPrice, ingredients: updatedIngredients})
+        this.setState({ ingredients: updatedIngredients, totalPrice: newPrice })
+    }
+
+    removeIngredientHandler = (type) => {
+        // Remove ingredient
+        const oldCount = this.state.ingredients[type];
+        if (oldCount <= 0) {
+            return;
+        }
+        const updatedCount = oldCount - 1;
+        const updatedIngredients = {
+            ...this.state.ingredients
+        }
+        updatedIngredients[type] = updatedCount;
+
+        // Reduce price
+        const priceAddition = INGREDIENT_PRICES[type];
+        const oldPrice = this.state.totalPrice;
+        const newPrice = oldPrice - priceAddition;
+        this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
     }
 
 
     render() {
+        const disabledInfo = {
+            ...this.state.ingredients
+        }
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo <= 0
+        }
+
         return(
             <Aux>
                 <Coffee ingredients={this.state.ingredients}/>
                 <BuildControls 
                     ingredientAdded={this.addIngredientHandler}
+                    ingredientRemoved={this.removeIngredientHandler}
+                    disabled={disabledInfo}
                 />
             </Aux>
         );
