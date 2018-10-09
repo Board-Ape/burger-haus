@@ -61,7 +61,7 @@ class CoffeeBuilder extends Component {
             ...this.state.ingredients
         }
         for (let key in disabledInfo) {
-            disabledInfo[key] = disabledInfo <= 0
+            disabledInfo[key] = disabledInfo[key] <= 0
         }
 
         return(
