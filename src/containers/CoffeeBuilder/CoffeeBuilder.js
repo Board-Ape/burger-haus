@@ -18,7 +18,18 @@ class CoffeeBuilder extends Component {
             cheese: 0,
             meat: 0
         },
-        totalPrice: 4.00
+        totalPrice: 4.00,
+        purchasable: false
+    }
+
+    updatePurchaseState () {
+        const ingredients = {
+            ...this.state.ingredients
+        };
+        const sum = Object.keys(ingredients)
+            .map(igKey => {
+                return ingredients[igKey]
+            });
     }
 
     addIngredientHandler = (type) => {
