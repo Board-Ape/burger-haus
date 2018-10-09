@@ -22,14 +22,15 @@ class CoffeeBuilder extends Component {
         purchasable: false
     }
 
-    updatePurchaseState () {
-        const ingredients = {
-            ...this.state.ingredients
-        };
+    updatePurchaseState (ingredients) {
         const sum = Object.keys(ingredients)
             .map(igKey => {
                 return ingredients[igKey]
-            });
+            })
+            .reduce((sum, el) => {
+                return sum + el;
+            }, 0)
+        this.setState({purchasable: sum > 0})
     }
 
     addIngredientHandler = (type) => {
@@ -45,6 +46,7 @@ class CoffeeBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice + priceAddition;
         this.setState({ ingredients: updatedIngredients, totalPrice: newPrice })
+        this.updatePurchaseState(updatedIngredients);
     }
 
     removeIngredientHandler = (type) => {
@@ -64,6 +66,7 @@ class CoffeeBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice - priceAddition;
         this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
+        this.updatePurchaseState(updatedIngredients);
     }
 
 
@@ -82,6 +85,7 @@ class CoffeeBuilder extends Component {
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
                     disabled={disabledInfo}
+                    purchasable={this.state.purchasable}
                     price={this.state.totalPrice}
                 />
             </Aux>
