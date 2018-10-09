@@ -18,7 +18,7 @@ class CoffeeBuilder extends Component {
             cheese: 0,
             meat: 0
         },
-        totalPrice: 4
+        totalPrice: 4.00
     }
 
     addIngredientHandler = (type) => {
@@ -71,6 +71,7 @@ class CoffeeBuilder extends Component {
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
                     disabled={disabledInfo}
+                    price={this.state.totalPrice}
                 />
             </Aux>
         );
