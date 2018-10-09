@@ -21,7 +21,8 @@ class CoffeeBuilder extends Component {
             meat: 0
         },
         totalPrice: 4.00,
-        purchasable: false
+        purchasable: false,
+        purchasing: false
     }
 
     updatePurchaseState (ingredients) {
@@ -71,6 +72,10 @@ class CoffeeBuilder extends Component {
         this.updatePurchaseState(updatedIngredients);
     }
 
+    purchaseHandler = () => {
+        this.setState({ purchasing: true })
+    }
+
 
     render() {
         const disabledInfo = {
@@ -82,7 +87,7 @@ class CoffeeBuilder extends Component {
 
         return(
             <Aux>
-                <Modal>
+                <Modal show={this.state.purchasing}>
                     <OrderSummary ingredients={this.state.ingredients}/>
                 </Modal>
                 <Coffee ingredients={this.state.ingredients}/>
@@ -92,6 +97,7 @@ class CoffeeBuilder extends Component {
                     disabled={disabledInfo}
                     purchasable={this.state.purchasable}
                     price={this.state.totalPrice}
+                    ordered={this.purchaseHandler}
                 />
             </Aux>
         );
