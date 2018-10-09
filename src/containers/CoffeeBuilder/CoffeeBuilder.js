@@ -76,8 +76,13 @@ class CoffeeBuilder extends Component {
         this.setState({ purchasing: true })
     }
 
-    purchaseCancelhandler = () => {
+    purchaseCancelHandler = () => {
         this.setState({ purchasing: false })
+    }
+
+    purchaseContinueHandler = () => {
+        this.setState({ purchasing: false })
+        alert("Please continue to build your burger")
     }
 
 
@@ -93,9 +98,13 @@ class CoffeeBuilder extends Component {
             <Aux>
                 <Modal 
                     show={this.state.purchasing}
-                    modalClosed={this.purchaseCancelhandler}
+                    modalClosed={this.purchaseCancelHandler}
                 >
-                    <OrderSummary ingredients={this.state.ingredients}/>
+                    <OrderSummary 
+                        ingredients={this.state.ingredients}
+                        purchaseCancelled={this.purchaseCancelHandler}
+                        purchaseContinued={this.purchaseContinueHandler}
+                    />
                 </Modal>
                 <Coffee ingredients={this.state.ingredients}/>
                 <BuildControls 
