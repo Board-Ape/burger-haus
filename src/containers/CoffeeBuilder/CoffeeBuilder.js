@@ -104,6 +104,7 @@ class CoffeeBuilder extends Component {
                         ingredients={this.state.ingredients}
                         purchaseCancelled={this.purchaseCancelHandler}
                         purchaseContinued={this.purchaseContinueHandler}
+                        totalPrice={this.state.totalPrice}
                     />
                 </Modal>
                 <Coffee ingredients={this.state.ingredients}/>
