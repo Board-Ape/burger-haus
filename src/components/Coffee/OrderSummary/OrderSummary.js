@@ -19,6 +19,7 @@ const orderSummary = (props) => {
             <ul>
                 { ingredientSummary }
             </ul>
+            <p><strong>Total Price: {props.totalPrice.toFixed(2)}</strong> </p>
             <p>Continue to checkout</p>
             <Button 
                 btnType='Danger'
@@ -32,4 +33,4 @@ const orderSummary = (props) => {
     )
 } 
 
-export default orderSummary;
+export default orderSummary; 
