@@ -12,9 +12,9 @@ class Layout extends Component {
     }
 
     sideDrawerHandler = () => {
-        const currentState = this.state.showSideDrawer;
-        
-        this.setState({ showSideDrawer: !currentState });
+        this.setState((prevState) => {
+            return {showSideDrawer: !prevState.showSideDrawer} 
+        });
     }
 
     render () {
