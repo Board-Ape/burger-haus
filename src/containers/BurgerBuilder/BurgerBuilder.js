@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
-import Coffee from '../../components/Coffee/Coffee';
-import BuildControls from '../../components/Coffee/BuildControls/BuildControls';
+import Burger from '../../components/Burger/Burger';
+import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
-import OrderSummary from '../../components/Coffee/OrderSummary/OrderSummary';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -12,7 +12,7 @@ const INGREDIENT_PRICES = {
     bacon: 0.7
 }
 
-class CoffeeBuilder extends Component {
+class BurgerBuilder extends Component {
     state = {
         ingredients: {
             salad: 0,
@@ -107,7 +107,7 @@ class CoffeeBuilder extends Component {
                         totalPrice={this.state.totalPrice}
                     />
                 </Modal>
-                <Coffee ingredients={this.state.ingredients}/>
+                <Burger ingredients={this.state.ingredients}/>
                 <BuildControls 
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
@@ -121,4 +121,4 @@ class CoffeeBuilder extends Component {
     }
 }
 
-export default CoffeeBuilder;
+export default BurgerBuilder;

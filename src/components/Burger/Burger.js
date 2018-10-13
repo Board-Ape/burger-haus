@@ -1,14 +1,14 @@
 import React from 'react';
-import classes from './Coffee.css';
-import CoffeeIngredients from './CoffeeIngredients/CoffeeIngredients';
+import classes from './Burger.css';
+import BurgerIngredients from './BurgerIngredients/BurgerIngredients';
 
-const coffee = (props) => {
+const burger = (props) => {
     
     let transformedIngredients = Object.keys(props.ingredients)
         .map(igKey => {
             return [...Array(props.ingredients[igKey])].map((_, i) => {
 
-                return <CoffeeIngredients key={igKey + i} type={igKey} />;
+                return <BurgerIngredients key={igKey + i} type={igKey} />;
             }) ;
         }) 
         .reduce((arr, el) => {
@@ -19,12 +19,12 @@ const coffee = (props) => {
         transformedIngredients = <p>Please Start Adding Ingredients</p>
     }
     return (
-        <div className={classes.Coffee}>
-            <CoffeeIngredients type="bread-top" />
+        <div className={classes.Burger}>
+            <BurgerIngredients type="bread-top" />
             { transformedIngredients }
-            <CoffeeIngredients type="bread-bottom" />
+            <BurgerIngredients type="bread-bottom" />
         </div>
     );
 }
 
-export default coffee;
+export default burger;
